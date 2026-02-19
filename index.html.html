@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Money Counting Portal</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        table {
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid black;
+        }
+        input {
+            width: 80px;
+            padding: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 15px;
+            color: gray;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Money Counting Portal</h2>
+
+<br>
+
+<table>
+    <tr>
+        <th>Note (₹)</th>
+        <th>Quantity</th>
+        <th>Total (₹)</th>
+    </tr>
+    <tr><td>10</td><td><input type="number" id="n10" value="0"></td><td id="t10">0</td></tr>
+    <tr><td>20</td><td><input type="number" id="n20" value="0"></td><td id="t20">0</td></tr>
+    <tr><td>50</td><td><input type="number" id="n50" value="0"></td><td id="t50">0</td></tr>
+    <tr><td>100</td><td><input type="number" id="n100" value="0"></td><td id="t100">0</td></tr>
+    <tr><td>200</td><td><input type="number" id="n200" value="0"></td><td id="t200">0</td></tr>
+    <tr><td>500</td><td><input type="number" id="n500" value="0"></td><td id="t500">0</td></tr>
+</table>
+
+<button onclick="calculateMoney()">Calculate</button>
+
+<h3 id="grandTotal"></h3>
+<h3 id="totalNotes"></h3>
+
+<div class="footer">
+Developed By SHOYAB MANSURI
+</div>
+
+<script>
+function calculateMoney() {
+
+    let notes = [10,20,50,100,200,500];
+    let grandTotal = 0;
+    let totalNotes = 0;
+
+    notes.forEach(function(value){
+        let qty = parseInt(document.getElementById("n"+value).value) || 0;
+        let total = qty * value;
+
+        document.getElementById("t"+value).innerHTML = total;
+
+        grandTotal += total;
+        totalNotes += qty;
+    });
+
+    document.getElementById("grandTotal").innerHTML = 
+        "Grand Total Amount = ₹ " + grandTotal;
+
+    document.getElementById("totalNotes").innerHTML = 
+        "Total Notes = " + totalNotes;
+}
+</script>
+
+</body>
+</html>
